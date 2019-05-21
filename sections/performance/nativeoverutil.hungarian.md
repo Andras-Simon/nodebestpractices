@@ -1,24 +1,22 @@
-# Prefer native JS methods over user-land utils like Lodash
+# Részesítsd előnyben a natív JS metódusokat a harmadik fejlesztő(k)től származó könyvtárakkal szemben
 
 
 <br/><br/>
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
-Sometimes, using native methods is better than requiring `lodash` or `underscore` because it will not lead in a performance boost and use more space than necessary.
-The performance using native methods result in an [overall ~50% gain](https://github.com/Berkmann18/NativeVsUtils/blob/master/analysis.xlsx) which includes the following methods: `Array.concat`, `Array.fill`, `Array.filter`, `Array.map`, `(Array|String).indexOf`, `Object.find`, ...
-
+Néha a natív metódusok használata jobb megoldás, mint pl. a `lodash` vagy `underscore` használata, hiszen ezek használata lassíthatja a végrehajtási sebességet ill. a szükségesnél több tárhely felhasználásával járhat. Natív metódusok használata hozzávetőlegesen [ ~50% teljesítménynövekedéssel](https://github.com/Berkmann18/NativeVsUtils/blob/master/analysis.xlsx) járhat, többek között az alábbi metódusok esetén: `Array.concat`, `Array.fill`, `Array.filter`, `Array.map`, `(Array|String).indexOf`, `Object.find`, ...
 
 <!-- comp here: https://gist.github.com/Berkmann18/3a99f308d58535ab0719ac8fc3c3b8bb-->
 
 <br/><br/>
 
-### Example: benchmark comparison - Lodash vs V8 (Native)
-The graph below shows the [mean of the benchmarks for a variety of Lodash methods](https://github.com/Berkmann18/NativeVsUtils/blob/master/nativeVsLodash.ods), this shows that Lodash methods take on average 146.23% more time to complete the same tasks as V8 methods.
+### Példa: Lodash vs V8 (natív) összehasonlítás
+A lenti diagrammon [számos Lodash metódus átlagos végrehajtási ideje látható](https://github.com/Berkmann18/NativeVsUtils/blob/master/nativeVsLodash.ods). A Lodash metódusoknak átlagosan 146.23%-kal tovább tart elvégezni egy adott feladatot, mint a metódusok natív megfelelőinek. 
 
 ![meanDiag](../../assets/images/sampleMeanDiag.png)
 
-### Code Example – Benchmark test on `_.concat`/`Array.concat`
+### Példakód – A `_.concat`/`Array.concat` metódus benchmarkja
 ```javascript
 const _ = require('lodash'),
   __ = require('underscore'),
@@ -34,21 +32,21 @@ concatSuite.add('lodash', () => _.concat(array, 3, 4, 5))
   .run({ 'async': true });
 ```
 
-Which returns this:
+A fenti kód eredménye:
 
 ![output](../../assets/images/concat-benchmark.png)
 
-You can find a bigger list of benchmarks [here](https://github.com/Berkmann18/NativeVsUtils/blob/master/index.txt) or alternatively [run this](https://github.com/Berkmann18/NativeVsUtils/blob/master/index.js) which would show the same but with colours.
+További tesztek [itt találhatóak](https://github.com/Berkmann18/NativeVsUtils/blob/master/index.txt) vagy [ez a teszt](https://github.com/Berkmann18/NativeVsUtils/blob/master/index.js) is használható, utóbbi színezett eredményekkel szolgál.
 
-### Blog Quote: "You don't (may not) need Lodash/Underscore"
+### Blog Idézet: "(Lehet, hogy) Nincs szükséged Lodash-re/Underscore-ra"
 
-From the [repo on this matter which focuses on Lodash and Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore).
+Egy, a [Lodash és Underscore teljesítményére fókuszálló GitHub repositroyból](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore).
 
- > Lodash and Underscore are great modern JavaScript utility libraries, and they are widely used by Front-end developers. However, when you are targeting modern browsers, you may find out that there are many methods which are already supported natively thanks to ECMAScript5 [ES5] and ECMAScript2015 [ES6]. If you want your project to require fewer dependencies, and you know your target browser clearly, then you may not need Lodash/Underscore.
+ > A Lodash és az Underscore kiváló, modern JavaScript könyvtárak, és széles körben elterjedtek a Front-end fejlesztők körében. Viszont, ha modern böngészőkre fejlesztünk, gyakran szembesülünk a ténnyel, hogy rengeteg metódus az említett könyvtárakból már eleve rendelkezésre áll natív módon, az ECMAScript5 [ES5] és ECMAScript2015 [ES6] szabványoknak köszönhetően. Ha szeretnéd a projekt függőségeit alacsonyan tartani, és tisztában vagy a megcélzott böngészőkkel, nincs szükséged a Lodash-re/Underscore-ra.
 
-### Example: Linting for non-native methods usage
-There's an [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-you-dont-need-lodash-underscore) which detects where you're using libraries but don't need to by warning you with suggestions (cf. example below).<br>
-The way you set it up is by adding the `eslint-plugin-you-dont-need-lodash-underscore` plugin to your ESLint configuration file:
+### Példa: nem natív segédfüggvények használatlának automatikus észlelése
+Létezik egy [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-you-dont-need-lodash-underscore) ami felimseri, ha olyan külső könyvtárat használunk, amire nincs feltétlen van szükség (ld. az alábbi példát).
+Használatához adjuk a következő sorokat az ESLint konfigurációs fájlhoz:
 ```json
 {
   "extends": [
@@ -57,14 +55,13 @@ The way you set it up is by adding the `eslint-plugin-you-dont-need-lodash-under
 }
 ```
 
-### Example: detecting non-v8 util usage using a linter
-Consider the file below:
+Vegyük az alábbi példát:
 ```js
 const _ = require('lodash');
-// ESLint will flag the line above with a suggestion
+// az ESLint jelezni fog a fenti sorra
 console.log(_.map([0, 1, 2, 4, 8, 16], x => `d${x}`));
 ```
-Here's what ESLint would output when using the YDNLU plugin.
+Az ESLint az alábbi kimentet fogja produkálni, ha a YDNLU plugint használjuk:
 ![output](../../assets/images/ydnlu.png)
 
-Of course, the example above doesn't seem realistic considering what actual codebases would have but you get the idea.
+Persze a fenti példa nem feltétlenül valószerű, de szemléltetésnek tökéletes.
