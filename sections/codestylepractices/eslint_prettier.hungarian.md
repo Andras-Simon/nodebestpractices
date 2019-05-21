@@ -1,9 +1,9 @@
-# Using ESLint and Prettier
+# Használj ESLint-et és Prettier-t
 
 
-### Comparing ESLint and Prettier
+### ESLint és Prettier összehasonlítás
 
-If you format this code using ESLint, it will just give you a warning that it's too wide (depends on your `max-len` setting). Prettier will automatically format it for you.
+Ha a lenti kódrészletet ESLinttel formázod, figyelmeztetést kapsz, hogy a sorok túl hosszúak (ez függ a `max-len` értékétől is). A Prettier automatikusan a megfelelő hosszúra tördeli a sorokat.
 
 ```javascript
 foo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne(), noWayYouGottaBeKiddingMe());
@@ -19,8 +19,9 @@ foo(
 );
 ```
 
-Source: [https://github.com/prettier/prettier-eslint/issues/101](https://github.com/prettier/prettier-eslint/issues/101)
+Forrás: [https://github.com/prettier/prettier-eslint/issues/101](https://github.com/prettier/prettier-eslint/issues/101)
 
-### Integrating ESLint and Prettier
+### Az ESLint és Prettier integrálása
 
-ESLint and Prettier overlap in the code formatting feature but can be easily combined by using other packages like [prettier-eslint](https://github.com/prettier/prettier-eslint), [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier), and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier). For more information about their differences, you can view the link [here](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint).
+Az ESLint és Prettier kód formázó funkcionalitásában ugyan vannak átfedések, de könnyedén megférnek egymás mellet, ha használjuk a következő csomagok valamelyikét:
+ [prettier-eslint](https://github.com/prettier/prettier-eslint), [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier), és [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier). Ha több információra van szükséged, vagy mélyebb összehasonlítást keresel, kattints [ide (angol nyelvű)](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint).
