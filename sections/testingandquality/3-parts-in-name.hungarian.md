@@ -1,25 +1,25 @@
-# Include 3 parts in each test name
+# Minden teszt elnevezés 3 részből álljon
 
 <br/><br/>
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
-A test report should tell whether the current application revision satisfies the requirements for the people who are not necessarily familiar with the code: the tester, the DevOps engineer who is deploying and the future you two years from now. This can be achieved best if the tests speak at the requirements level and include 3 parts:
+Egy teszt eredménynek elég beszédesnek kell lennie ahhoz, hogy - a kódot nem feltétlenül ismerő - személyek (pl. DevOps, tester) is könnyedén értsék, hogy az alkalmazás megfelel-e a támasztott követelményeknek. Ez legkönnyebben úgy érhető el, hogy a tesztesetek jól definiáltak, és tartalmazzák a következőket:
 
-(1) What is being tested? For example, the ProductsService.addNewProduct method
+(1) Mit tesztelünk? Pl.: ProductsService.addNewProduct metódus
 
-(2) Under what circumstances and scenario? For example, no price is passed to the method
+(2) Milyen körülményeket vagy eseteket vizsgálunk? Pl.: "a metódust a price attribútum nélkül hívták meg"
 
-(3) What is the expected result? For example, the new product is not approved
+(3) Mi az elvárt eredmény? Pl.: az új terméket nem fogadjuk el
 
 <br/><br/>
 
-### Code example: a test name that incluces 3 parts
+### Példakód: 3 részes teszt elnevezés
 ```javascript
-//1. unit under test
+//1. mit tesztelünk?
 describe('Products Service', function() {
   describe('Add new product', function() {
-    //2. scenario and 3. expectation
+    //2. körülmények 3. elvárt eredmény
     it('When no price is specified, then the product status is pending approval', ()=> {
       const newProduct = new ProductService().add(...);
       expect(newProduct.status).to.equal('pendingApproval');
@@ -30,12 +30,13 @@ describe('Products Service', function() {
 
 <br/><br/>
 
-### Code Example – Anti Pattern: one must read the entire test code to understand the intent 
+### Példakód: Ellenpélda - a teljes teszt kódját el kell olvasnunk, hogy megértsük milyen estre tesztelünk
 ```javascript
 describe('Products Service', function() {
   describe('Add new product', function() {
     it('Should return the right status', ()=> {
-        //hmm, what is this test checking? what are the scenario and expectation?
+        //hmm, vajon mit vizsgál a teszt? 
+        //Mi volt a bemenet és mit várunk kimenetként?
       const newProduct = new ProductService().add(...);
       expect(newProduct.status).to.equal('pendingApproval');
     });
@@ -45,10 +46,10 @@ describe('Products Service', function() {
 
 <br/><br/>
 
-###  "Doing It Right Example: The test report resembles the requirements document"
+### "Így csináld jól: A teszt report hasonlítson a követelményleírásra"
 
- [From the blog "30 Node.js testing best practices" by Yoni Goldberg](https://medium.com/@me_37286/yoni-goldberg-javascript-nodejs-testing-best-practices-2b98924c9347)
+ [Angol példák: "30 Node.js testing best practices"  Yoni Goldbergtől](https://medium.com/@me_37286/yoni-goldberg-javascript-nodejs-testing-best-practices-2b98924c9347)
 
- ![A test report example](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/test-report-like-requirements.jpeg "A test report example")
+ ![Teszt report példa](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/test-report-like-requirements.jpeg "Teszt report példa")
 
 <br/><br/>
