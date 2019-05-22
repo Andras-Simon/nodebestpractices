@@ -1,17 +1,17 @@
-# Avoid global test fixtures and seeds, add data per-test
+# Kerüld a globális teszt adatokat, minden teszteset saját adatokkal dolgozzon  
 
 <br/><br/>
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
- Going by the golden testing rule - keep test cases dead-simple, each test should add and act on its own set of DB rows to prevent coupling and easily reason about the test flow. In reality, this is often violated by testers who seed the DB with data before running the tests (also known as ‘test fixture’) for the sake of performance improvement. While performance is indeed a valid concern — it can be mitigated (e.g. In-memory DB, see “Component testing” bullet), however, test complexity is a much painful sorrow that should govern other considerations. Practically, make each test case explicitly add the DB records it needs and act only on those records. If performance becomes a critical concern — a balanced compromise might come in the form of seeding the only suite of tests that are not mutating data (e.g. queries)
+Kövessük a tesztelés aranyszabályát - a tesztesetek legyenek minél egyszerűbbek. Minden teszteset készítse el a saját teszt adatait és a teszt során csak ezeket használja. így elérhetőek a nem kívánt mellékhatások, és a teszt is könnyebben magyarázható. A valóságban ezt sajnos sokszor nem tartjuk be, gyakori eset, hogy a tesztek futtatása előtt töltjük fel az adatbázist (ún. ‘test fixture’), hogy a tesztek futását gyorsítsuk. A teszt futásideje valóban probéma lehet, azonban léteznek erre egyéb megoldások (pl. In-Memory adatbázissal, bővebben lásd a "Komponensek tesztelése" pontot) illetve a tesztek túlkomplikálása sokkal fájdalmasabb lehet, így tervezői döntéseinket ennek tudatában érdemes meghozni. Gyakorlatan arra kell figyelni, hogy minden tesztesetnek explicit létre kell hoznia az adatokat (Adatbázis rekordokat) amikre szüksége van, és a teszteset futása során csak ezeket szabad használni. Ha a teszt futásideje megkerülhetetlen tényező lesz, jó kompromisszum lehet, ha csak azokat az adatokat hozzuk létre teszteseten kívül, amiken módosítást nem végzünk a tesztek futása során (pl. adatlekérdezések).
 
 <br/><br/>
 
-### Code example: each test acts on its own set of data
+### Példakód: minden teszteset saját adatokkal dolgozik
 ```javascript
 it("When updating site name, get successful confirmation", async () => {
-  //test is adding a fresh new records and acting on the records only
+  //a teszt létrehozza az új rekordokat, és csak azokkal dolgozik
   const siteUnderTest = await SiteService.addSite({
     name: "siteForUpdateTest"
   });
@@ -22,21 +22,21 @@ it("When updating site name, get successful confirmation", async () => {
 
 <br/><br/>
 
-### Code Example – Anti Pattern:  tests are not independent and assume the existence of some pre-configured data
+### Példakód – Ellenpélda:  a tesztek nem függetlenek, és bizonyos, előre elkészített adatok meglétét feltételezik
 ```javascript
 before(() => {
-  //adding sites and admins data to our DB. Where is the data? outside. At some external json or migration framework
+  // Kezdeti adatok hozzáadása az adatbázishoz. A teszt adatokat nem is látjuk, egy külső fájlban laknak
   await DB.AddSeedDataFromJson('seed.json');
 });
 it("When updating site name, get successful confirmation", async () => {
-  //I know that site name "portal" exists - I saw it in the seed files
+  //Előre feltételezzük, hogy a "Portal" nevű oldal létezik - láttuk az adatfájlban
   const siteToUpdate = await SiteService.getSiteByName("Portal");
   const updateNameResult = await SiteService.changeName(siteToUpdate, "newName");
   expect(updateNameResult).to.be(true);
 });
 it("When querying by site name, get the right site", async () => {
-  //I know that site name "portal" exists - I saw it in the seed files
+  //Előre feltételezzük, hogy a "Portal" nevű oldal létezik - láttuk az adatfájlban
   const siteToCheck = await SiteService.getSiteByName("Portal");
-  expect(siteToCheck.name).to.be.equal("Portal"); //Failure! The previous test change the name :[
+  expect(siteToCheck.name).to.be.equal("Portal"); //Hiba! Az előző teszteset már megváltoztatta a nevet :(
 });
 ```
