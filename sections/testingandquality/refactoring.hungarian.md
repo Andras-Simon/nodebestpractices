@@ -1,43 +1,41 @@
-# Refactoring
+# Refaktorálás
 
 <br/><br/>
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
-Refactoring is an important process in the iterative development flow. Removing "Code Smells" (bad coding practices) such as Duplicated Code, Long Methods, Long Parameter list will improve your code and making it more maintainable. Using a static analysis tools will assist you in finding these code smells and build a process around refactoring. Adding these tools to your CI build will help automate the quality checking process. If your CI integrates with a tool like Sonar or Code Climate, the build will fail if it detects code smells and inform the author on how to address the issue. Theses static analysis tools will complement lint tools such as ESLint. Most linting tools will focus on code styles like indentation and missing semicolons (although some will find code smells like Long functions) in a single file while static analysis tools will focus on finding code smells (duplicate code, complexity analysis, etc) that are in single files and multiple files.
-
-<br/><br/>
-
-
-### Martin Fowler - Chief Scientist at ThoughtWorks
-
- From the book, "Refactoring - Improving the Design of Existing Code"
-
- > Refactoring is a controlled technique for improving the design of an existing code base.
+A refaktorálás egy fontos lépése az interatív fejlszetési folyamatnak. Az ún. "Code Smell"-ek (szagos kód - rossz programozási gyakorlatok, mint pl. a kódduplikcáió, tól hosszú metódusok, túl sok paraméter) eltávolítása javítani fogja a kóf minőségét és könnyen karbantartható kódot eredményez. Bizonyos statikus analízis eszközök segítenek megtalálni ezeket a "Code Smell"-eket, és segítségükkel a refaktorálás is egy folyamat részévé tehető. Ha ezeket az eszközöket a CI build egy lépéseként alkalmazzuk, automatizálhatjuk a minőségellenőrzés folyamatát. Ha a CI megoldásunk integrálható olyan eszközökkel, mint pl. a Sonar vagy a Code Climate, a build folyamat megszakítható ha a forráskódban "Code Smell" található, és egyúttal a kód szerzője tanácsokat is kap arra, hogy miként javítsa a hiányosságot. Ezek a statikus ellenörző eszközök jól kiegészítik az automatikus formázó eszközöket pl. az ESlint-et. Amíg ezek a formázó eszközök a kódolás formázását ellnőrzik, mint pl. helyes indentáció és a pontosvesszők megléte (habár néhány "Code Smell" így is megtalálható, pl. a túl hosszú metódusok) addig a statikus kód analízis akár komplex (duplikált kód, komplexitás analízis) és több forrásfájlon átívelő "Code Smell"-t is megtalál.
 
 <br/><br/>
 
-### Evan Burchard - Web Development Consultant and Author
 
- From the book, "Refactoring JavaScript: Turning Bad Code into Good Code"
+### Martin Fowler - Vezető Kutató a ThoughtWorksnél
 
- > No matter what framework or
-“compiles-to-JS” language or library you use, bugs and performance concerns
-will always be an issue if the underlying quality of your JavaScript is poor.
+ Idézet a "Refactoring - Improving the Design of Existing Code" című könyvből (saját frodítás)
+
+ > A refaktorálás egy kontrollált technika a meglévő kódbázisunk modelljének javítására.
 
 <br/><br/>
 
- ### Example: Complex methods analysis with CodeClimate (commercial)
+### Evan Burchard - Webfejlsztés Tanácsadó és Író
 
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/codeanalysis-climate-complex-methods.PNG "Complex methods analysis")
+ Idézet a "Refactoring JavaScript: Turning Bad Code into Good Code" című könyből (saját frodítás)
 
-### Example: Code analysis trends and history with CodeClimate (commercial)
+ > Mindegy, hogy milyen keretrendszert vagy "JS-re-fordított" nyelvet használsz, hibák és teljesítménybeli problémák mindig előfordulnak, ha a mögöttes JavaScript kód minősége nem megfelelő.
 
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/codeanalysis-climate-history.PNG "Code analysis history")
+<br/><br/>
 
-### Example: Code analysis summary and trends with SonarQube (commercial)
+ ### Példa (angol): Komplex metódusok elemzése CodeClimate segítségével (kereskedelmi szoftver)
 
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/codeanalysis-sonarqube-dashboard.PNG "Code analysis history")
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/codeanalysis-climate-complex-methods.PNG " Komplex metódusok elemzése")
+
+### Példa (angol): Kód analízis trendek és előzmények CodeClimateben (kereskedelmi szoftver)
+
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/codeanalysis-climate-history.PNG "Kód analízis trendek és előzmények")
+
+### Példa (angol): Kód analízis összesítés és trendek SonarQube-ban (kereskedelmi szoftver)
+
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/codeanalysis-sonarqube-dashboard.PNG "Kód analízis összesítés és trendek")
 
 
 <br/><br/>
