@@ -1,13 +1,13 @@
-# Layer your app, keep Express within its boundaries
+# Rétegezd alkalmazásod, tartsd az Express-t a határain belül
 
 <br/><br/>
 
- ### Separate component code into layers: web, services, and DAL
+ ### Válaszd szét a komponenst rétegekre: web, szolgáltatások és DAL
 
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/structurebycomponents.PNG "Separate component code into layers")
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/structurebycomponents.PNG "Válaszd szét a komponenst rétegekre")
 
  <br/><br/>
 
-### 1 min explainer: The downside of mixing layers
+### 1 perces magyarázat: A rétegek keverésének hátrányai
 
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/keepexpressinweb.gif "The downside of mixing layers")
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/keepexpressinweb.gif "A rétegek keverésének hátrányai")
