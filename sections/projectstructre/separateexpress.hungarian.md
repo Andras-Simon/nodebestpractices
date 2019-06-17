@@ -1,14 +1,14 @@
-# Separate Express 'app' and 'server'
+# Válaszd szét az Express 'app' és 'server' objektumait
 
 <br/><br/>
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
-The latest Express generator comes with a great practice that is worth to keep - the API declaration is separated from the network related configuration (port, protocol, etc). This allows testing the API in-process, without performing network calls, with all the benefits that it brings to the table: fast testing execution and getting coverage metrics of the code. It also allows deploying the same API under flexible and different network conditions. Bonus: better separation of concerns and cleaner code
+A legutóbbi Express generátor bevezet egy új gyakorlatot, amit érdemes a továbbiakban is tartani - az API deklaráció külön van választva a hálózatspecifikus beállításoktól (port, protokoll stb). Ez lehetővé teszi, hogy az API-t processzen belül teszteljük, nem szükséges hálózati hívásokat intézni. Ennek eredményeként a tesztelési folyamat felgyorsul és a kódról is egyszerűbb coverage metrikákat gyűjteni. Ez azt is lehetővé teszi, hogy ugyanazt az API-t könnyedén használjuk más hálózati környezetben. Bónusz: tisztább kód és a szerepek jobb elkülönülése.
 
 <br/><br/>
 
-### Code example: API declaration, should reside in app.js
+### Példakód: Az API deklaráció az app.js-be tartozik
 
 ```javascript
 var app = express();
@@ -19,27 +19,27 @@ app.use("/api/forms", forms);
 
 <br/><br/>
 
-### Code example: Server network declaration, should reside in /bin/www
+### Példakód: A szerver hálózati beállításai a /bin/www-be tartoznak
 
 ```javascript
 var app = require('../app');
 var http = require('http');
 
 /**
- * Get port from environment and store in Express.
+ * Port kiolvasása a környzeti változóból, és eltárolása Express-ben.
  */
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * HTTP szerver létrehozás
  */
 
 var server = http.createServer(app);
 ```
 
-### Example: test your API in-process using supertest (popular testing package)
+### Példa: teszteld az API-t folyamaton belül supertesttel (népszerű teszt rendszer)
 
 ```javascript
 const app = express();
