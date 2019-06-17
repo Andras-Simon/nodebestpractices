@@ -1,28 +1,28 @@
-# Use environment aware, secure and hierarchical config
+# Használj környezeti változó kompatibilis, biztonságos és hierarchikus konfigurációt
 
 <br/><br/>
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
-When dealing with configuration data, many things can just annoy and slow down:
+Ha konfigurációs fájlokkal van dolgunk, sok dolog nehezítheti meg, vagy lassíthatja munkánkat:
 
-1. setting all the keys using process environment variables becomes very tedious when in need to inject 100 keys (instead of just committing those in a config file), however when dealing with files only the DevOps admins cannot alter the behavior without changing the code. A reliable config solution must combine both configuration files + overrides from the process variables
+1. Környezeti változók segítségével beállítani alkalmazásunkat könnyen nehézkessé válhat ha több 100 változót kell kezelnünk (ahelyett, hogy egyszerűen  beállítanánk őket egy konfigurációs fájlban, amit aztán kommitolunk), azonban ha csak a fájlokra hagyatkoznánk elvennénk a lehetőséget a DevOps tagoktól, hogy a kód átírása nélkül változtassák az alkalmazás viselkedését. Éppen ezek miatt, egy megbízható konfigurációs megoldás a fájlok mellett kezeli a környezeti változókkal való felülírást is.
 
-2. when specifying all keys in a flat JSON, it becomes frustrating to find and modify entries when the list grows bigger. A hierarchical JSON file that is grouped into sections can overcome this issue + few config libraries allow to store the configuration in multiple files and take care to union all at runtime. See example below
+2. Ha minden beállítás egy lapos JSON fájlban található, nehézkes lesz megtalálni a fájlban a keresett változókat ha abból túl sok van. Egy hierarchikus JSON file, ami csoportosítja a változókat megoldja ezt a problémát ill. számos osztálykönyvtár létezik, ami külön fájlokból tudja összefésülni a végső konfigurációt. Példákat ld. később.
 
-3. storing sensitive information like DB password is obviously not recommended but no quick and handy solution exists for this challenge. Some configuration libraries allow to encrypt files, others encrypt those entries during GIT commits or simply don't store real values for those entries and specify the actual value during deployment via environment variables.
+3. Érzékeny adatok (pl. adatbázis jelszavak) tárolása konfigurációs fájlokban kifejezetten nem ajánlott, de sajnos nincs gyors és egyszerű módszer ennek kiküszöbölésére. Egyes konfiguráció kezelő megoldások lehetővé teszik a konfig fájlok titkosítását, mások csak a változó értékét titkosítják GIT kommit előtt, vagy szimplán nem is tárolják ezeket az érzékeny adatokat, hanem telepítés során helyettesítik be az értékeket, környezeti változókból.
 
-4. some advanced configuration scenarios demand to inject configuration values via command line (vargs) or sync configuration info via a centralized cache like Redis so multiple servers will use the same configuration data.
+4. Egyes összetettebb esetek megkívánják, hogy a konfigurációt parancssori argumantumokkal (vargs) vagy központi cacheből betöltve (pl. Redisben tárolt beállítások, hogy több párhuzamosan telepített szerver ugyanazzal a konfigurációval fusson) adjuk meg.
 
-Some configuration libraries can provide most of these features for free, have a look at npm libraries like [rc](https://www.npmjs.com/package/rc), [nconf](https://www.npmjs.com/package/nconf) and [config](https://www.npmjs.com/package/config) which tick many of these requirements.
+Léteznek osztálykönyvtárak, melyek a fenti problémákra mind nyújtanak megoldást, ráadásul ingyenesen elérhetőek. Példák amik mind megfelelnek a fent állított követelményeknek: [rc](https://www.npmjs.com/package/rc), [nconf](https://www.npmjs.com/package/nconf) és [config](https://www.npmjs.com/package/config).
 
 <br/><br/>
 
-### Code Example – hierarchical config helps to find entries and maintain huge config files
+### Példakód – a hierarchikus konfiguráció segít a fájl átláthatóbbá tételében, és a hatalmas lonfogurációs fájlok is jól karbantarthatóak maradnak
 
 ```js
 {
-  // Customer module configs 
+  // Customer modul konfiguráció
   "Customer": {
     "dbConfig": {
       "host": "localhost",
@@ -31,7 +31,7 @@ Some configuration libraries can provide most of these features for free, have a
     },
     "credit": {
       "initialLimit": 100,
-      // Set low for development 
+      // Állítsd ezt alacsonyra ha tesztelsz
       "initialDays": 1
     }
   }
