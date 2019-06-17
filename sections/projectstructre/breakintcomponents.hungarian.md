@@ -1,37 +1,33 @@
-# Structure your solution by components
+# Csoportosítsd a komponenseid
 
 <br/><br/>
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
-For medium sized apps and above, monoliths are really bad - having one big software with many dependencies is just hard to reason about and often leads to spaghetti code. Even smart architects — those who are skilled enough to tame the beast and 'modularize' it — spend great mental effort on design, and each change requires carefully evaluating the impact on other dependent objects. The ultimate solution is to develop small software: divide the whole stack into self-contained components that don't share files with others, each constitutes very few files (e.g. API, service, data access, test, etc.) so that it's very easy to reason about it. Some may call this 'microservices' architecture — it's important to understand that microservices are not a spec which you must follow, but rather a set of principles. You may adopt many principles into a full-blown microservices architecture or adopt only a few. Both are good as long as you keep the software complexity low. The very least you should do is create basic borders between components, assign a folder in your project root for each business component and make it self-contained - other components are allowed to consume its functionality only through its public interface or API. This is the foundation for keeping your components simple, avoid dependency hell and pave the way to full-blown microservices in the future once your app grows.
+Közpes méretűnél nagyobb alkalmazások esetén a monolit architektúra rossz döntés - egy hatalmas alkalmazásról, amely rendszerint rengeteg függőséggel rendelkezik nehezen tudunk érvelni és rendszerint spagetti kódhoz vezet. Még a tapasztalt Achitectek - akik kellően felkészültek, és modularizálják a kódot - is rengeteg időt töltenek tervezéssel, és minden változtatásra alaposan mérlegelik, hogy az milyen hatással lesz a többi függőségre. A helyes megoldás az, ha kis szoftvereket fejlesztünk: a teljes alkalmazást daraboljuk fel kis, önmagukban is értelmes komponensekre, melyek a többi komponenstől függetlenül léteznek (pl. API, szolgáltatások , adatelérés, teszt stb.) és jól meghatározható a feladatuk. Egyesek ezt 'microservice' architektúrának is nevezik -  de fontos hogy leszögezzük, a mocrosrvicek nem egy specifikáció amit követned kell, hanem inkább  elvek gyűjteménye. A tervezőn múlik, hogy minden elvet szem előtt tart-e, vagy csak pár számára fontosat. Mindkét döntés megállja a helyét, mindaddig, amíg a szoftver komplexitását alacsonyan tartjuk. A minimum, ami elvárható, hogy a komponensek között egy finom határvonalat húzunk és minden business komponenst egy saját dedikált mappájában fejlesztünk a projektkönyvtáron belül - fontos, hogy ezeket az elkülönített komponenseket a többi komponens csak a külvilág felé nyújtot, jól definiált API-n keresztül használhatja. Ez a megközelítés alapfeltétele annak, hogy a komponenseink egyszerűek maradjanak, elkerüljük a 'dependency hell'-t és, hogy a jövőben ha alkalmazáunk tovább növekszik, könnyedén adaptáljuk a teljes microservice architektúrát.
 
-<br/><br/>
+### Idézet egy blogból: "Egy komponens felskálázása pedig magával vonja a teljes alkalmazás felskálázását"
 
-### Blog Quote: "Scaling requires scaling of the entire application"
+ A MartinFowler.com blogból
 
- From the blog MartinFowler.com
-
-> Monolithic applications can be successful, but increasingly people are feeling frustrations with them - especially as more applications are being deployed to the cloud. Change cycles are tied together - a change made to a small part of the application requires the entire monolith to be rebuilt and deployed. Over time it's often hard to keep a good modular structure, making it harder to keep changes that ought to only affect one module within that module. Scaling requires scaling of the entire application rather than parts of it that require greater resource.
+> A monolit alkalmazások is lehetnek jók, de egyre több ember érez frusztrációt velük kapcsolatban - különösen mióta egyre több telepítenek a felhőbe. A valtozásperiódusok a monolit esetén összefüggenek - egy apró változás az alkalmazás egy részében a teljes alkalmazás újrafordítását és telepítését vonja magával. Idővel pedig egyre nehezebb lesz megtartani egy jól működő moduláris struktúrát, ami megnehezíti olyan módosítások véghezvitelét ami az alkalmazás egy kis részét érinti csak. Egy komponens felskálázása pedig magával vonja a teljes alkalmazás felskálázását, ahelyett, hogy csak a terheltebb komponenseket skálázzuk.
 
 <br/><br/>
 
-### Blog Quote: "So what does the architecture of your application scream?"
+### Idézet egy blogból: "Mit árul el rólad az alkalmazásod felépítése?"
 
- From the blog [uncle-bob](https://8thlight.com/blog/uncle-bob/2011/09/30/Screaming-Architecture.html) 
-
-> ...if you were looking at the architecture of a library, you’d likely see a grand entrance, an area for check-in-out clerks, reading areas, small conference rooms, and gallery after gallery capable of holding bookshelves for all the books in the library. That architecture would scream: Library.<br/>
-
-So what does the architecture of your application scream? When you look at the top level directory structure, and the source files in the highest level package; do they scream: Health Care System, or Accounting System, or Inventory Management System? Or do they scream: Rails, or Spring/Hibernate, or ASP?.
+  [uncle-bob](https://8thlight.com/blog/uncle-bob/2011/09/30/Screaming-Architecture.html) blogjából
+> ...ha egy könyvtár felépítését nézzük, akkor elvárjuk, hogy legyen egy nagy központi bejárat, olvasótermek, kisebb konferencia termek, és rengeteg galéria, ahol a könyvtár könyvei számára polcok találhatóak. Az épület felépítése elárulja: ez egy könyvtár.
+Szóval mit árul el rólad az alkalmazásod felépítése? Mit látsz ha megnézed a főkönyvtárat és az ott található fájlokat? Elárulják, hogy éppen egy egészségügyi alkalmazást látsz, vagy egy könyvelő alkalmazást vagy esetleg egy raktárkészletezőt alkalmazást? Vagy csakt azt árulják el, hogy az alkalmazás miben iródott: Rails, vagy Spring/Hibernate, esetleg ASP?
 
 <br/><br/>
 
-### Good: Structure your solution by self-contained components
+### Jó példa: Struktúráld projekted önálló komponensekbe (angol nyelvű)
 
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/structurebycomponents.PNG "Structuring solution by components")
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/structurebycomponents.PNG "Struktúráld projekted önálló komponensekbe")
 
 <br/><br/>
 
-### Bad: Group your files by technical role
+### Rossz példa: Csoportosítsd fájljaidat szerepük alapján (angol nyelvű)
 
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/structurebyroles.PNG "Structuring solution by technical roles")
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/structurebyroles.PNG "Csoportosítsd fájljaidat szerepük alapjén")
