@@ -1,10 +1,10 @@
-# Use Async-Await or promises for async error handling
+# Használd az Asyn-Await-ot vagy Promiseokat az aszinkron hibakezeléshez
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
-Callbacks don’t scale well since most programmers are not familiar with them. They force to check errors all over, deal with nasty code nesting and make it difficult to reason about the code flow. Promise libraries like BlueBird, async, and Q pack a standard code style using RETURN and THROW to control the program flow. Specifically, they support the favorite try-catch error handling style which allows freeing the main code path from dealing with errors in every function
+A callbackek nem skálázhatóak jól mivel a legtöbb programozó nem ismeri őket. Megkövetelik a hibák vizsgálatát minden helyzetben és a sok szintű kódbeágyazás nehézkessé teszi a program futásának áttekintését. A Promise könyvárak, mint a BlueBird, async és Q egy egységes stílusban - a RETURN és THROW használatával - teszik lehetővé könnyen követhetően a program futásának kontrolálását. Lehetővé teszik a jól bevált try-catch hibakezelés használatát aszinkron környezetben, ami a program fő futási útvonalát megszabadítja a hibák vizsgálatától.
 
-### Code Example – using promises to catch errors
+### Példakód – promise-ok használata kivételek elkapásához
 
 ```javascript
 doWork()
@@ -15,19 +15,19 @@ doWork()
  .then(verify);
 ```
 
-### Anti pattern code example – callback style error handling
+### Kerülendő példa – hibakezelés callback stílusban
 
 ```javascript
 getData(someParameter, function(err, result) {
     if(err !== null) {
-        // do something like calling the given callback function and pass the error
+        // az átadott callback hívása és a hiba átadása...
         getMoreData(a, function(err, result) {
             if(err !== null) {
-                // do something like calling the given callback function and pass the error
+                // az átadott callback hívása és a hiba átadása...
                 getMoreData(b, function(c) {
                     getMoreData(d, function(e) {
                         if(err !== null ) {
-                            // you get the idea? 
+                            // Érted már, mi a probléma? 
                         }
                     })
                 });
@@ -37,26 +37,26 @@ getData(someParameter, function(err, result) {
 });
 ```
 
-### Blog Quote: "We have a problem with promises"
+### Idézet: "Van egy baj a Promise-okkal"
 
- From the blog pouchdb.com
+ Idézet a pouchdb.com blogból:
 
- > ……And in fact, callbacks do something even more sinister: they deprive us of the stack, which is something we usually take for granted in programming languages. Writing code without a stack is a lot like driving a car without a brake pedal: you don’t realize how badly you need it until you reach for it and it’s not there. The whole point of promises is to give us back the language fundamentals we lost when we went async: return, throw, and the stack. But you have to know how to use promises correctly in order to take advantage of them.
+ > ……tulajdonképpan a callbackek még ennél is baljósabb dolgot csinálnak: megfosztanak minket a call stacktől, amit általában adottnak tekintünk a többi nyelvben. Kód írása a call stack nélkül olyan, mint autót vezetni fékpedál nélkül: nem tudod, hogy mennyire fontos, amíg egyszer használnád, és nincs a helyén. A Promise-ok lényege, hogy visszaadják a nyelv azon alapjait, melyeket elvesztettünk az aszinkron kóddal: return, throw és a call stack. De ahhoz, hogy előnyt kovácsoljunk a Promise-okból, meg tanulni használni őket.
 
-### Blog Quote: "The promises method is much more compact"
+### Idézet: "A Promise-ok sokkal összetettebbek mint gondolnád"
 
- From the blog gosquared.com
+ Idézet gosquared.com-ról:
 
- > ………The promises method is much more compact, clearer and quicker to write. If an error or exception occurs within any of the ops it is handled by the single .catch() handler. Having this single place to handle all errors means you don’t need to write error checking for each stage of the work.
+  > ………A Promise-ok használata sokkal kompaktabb, átláthatóbb és gyorsabb. Ha egy hiba vagy kivétel ketletkezik bármelyik művelet közben egy egységes .catch() blokk fogja kezelni. Az ilyen egységes hibakezelés azt eredményezi, hogy nem kell minden egyes sor után vizsgálni a hibákat.
 
-### Blog Quote: "Promises are native ES6, can be used with generators"
+### Idézet: "A Promise megtalálható natívan az ES6 szabványban, használható generátorokkal"
 
- From the blog StrongLoop
+ Idézet a StrongLoop blogról:
 
- > ….Callbacks have a lousy error-handling story. Promises are better. Marry the built-in error handling in Express with promises and significantly lower the chances of an uncaught exception. Promises are native ES6, can be used with generators, and ES7 proposals like async/await through compilers like Babel
+ > ………A callbackek hibakezelése meglehetősen rossz, a Promse-ok esetében ez sokkal jobban megoldható. Kombináld az Expressben beépített hibakezelést a Promise-okkal és máris drasztikusan csökkentetted a nem kezelt kivételek lehetőségét. A Promise megtalálható natívan az ES6 szabványban, használható generátorokkal és olyan fordítókkal mint a Babel, használható az ES7 szabványban leírt async/await-el.
 
-### Blog Quote: "All those regular flow control constructs you are used to are completely broken"
+### Idézet: "Az összes eddigi megoldás, amit eddig a program futásának szabályozására használtál teljesen rossz"
 
-From the blog Benno’s
+Idézet Benno blogjáról:
 
- > ……One of the best things about asynchronous, callback-based programming is that basically all those regular flow control constructs you are used to are completely broken. However, the one I find most broken is the handling of exceptions. Javascript provides a fairly familiar try…catch construct for dealing with exceptions. The problem with exceptions is that they provide a great way of short-cutting errors up a call stack, but end up being completely useless if the error happens on a different stack…
+ > ……Az egyik 'legjobb' dolog a callback alapú, aszinkron programozásban, hogy az összes eddigi megoldás, amit eddig a program futásának szabályozására használtál teljesen rossz. Viszont, ami a legrosszabb az a hibák kezelése. A Javascript rendelkezik egy sokaknak ismerős try-catch megoldással a hibakezeléshez. A fő probléma a kivételekkel az, hogy nagyszerűen keresztül juttahatóak a call stacken, de teljesen haszontalanok, ha a hiba egy teljesen másik call stacken keltkezett.
