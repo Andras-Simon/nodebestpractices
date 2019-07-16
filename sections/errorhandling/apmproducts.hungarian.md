@@ -1,28 +1,26 @@
-# Discover errors and downtime using APM products
+# Figyeld a az alkalmazás hibáit és a leállásokat APM megoldásokkal
 
 
-### One Paragraph Explainer
+### Rövid magyarázat
 
-Exception != Error. Traditional error handling assumes the existence of Exception but application errors might come in the form of slow code paths, API downtime, lack of computational resources and more. This is where APM products come in handy as they allow to detect a wide variety of ‘burried’ issues proactively with a minimal setup. Among the common features of APM products are for example alerting when the HTTP API returns errors, detect when the API response time drops below some threshold, detection of ‘code smells’, features to monitor server resources, operational intelligence dashboard with IT metrics and many other useful features. Most vendors offer a free plan.
+Exception != Error. A tradícionális hibakezelés feltételezi a kivételek (Excpetion) jelenlétét, de az alkalmazás hibái még számos különboző formát ölthetnek: lassú kód, API leállás, számítási kapacitás hiánya stb... Ez az a pont ahol jól jöhetnek az APM (Application Performance Management) megoldások, melyek lehetővé teszik a nehezen fellelhető problémák megtalálását minimális erőfeszítéssel. Többek között képesek figyelmeztetni ha a HTTP API hibával tér vissza, felfedezik ha az API válaszidő átlép egy határértéket, felfedezik az ún. 'code smell'-eket, monitorozzák az erőforrások kihasználtságát és egy összesített dashboardot nyújtanak a fontos üzleti metrikák egyszerű áttekintéséhez. A legtöbb ilyen szolgálatás alap verziója ingyen is ingénybe vehető.
 
-### Wikipedia about APM
+### A Wikipedia bejegyzése az APM-ről 
 
-In the fields of information technology and systems management, Application Performance Management (APM) is the monitoring and management of performance and availability of software applications. APM strives to detect and diagnose complex application performance problems to maintain an expected level of service. APM is “the translation of IT metrics into business meaning ([i.e.] value)". Major products and segments.
+Az információs technológiában és a rendszerfelügyeletben az APM (Application Performance Management) a szoftver termékek műküdésének és teljesítményének menedzselését és monitorozását jelenti. Az APM detektálja és diagnosztizálja a komplex alkalmazások teljesítményproblémáit, hogy a megfelelő szintű rendelkezésreállás biztosítható legyen. Az APM a "IT metrikiák üzleti értelemmel való felruházása (pl. értékek)".
 
-### Understanding the APM marketplace
+### Az APM piac áttekintése
 
-APM products constitute 3 major segments:
+A különböző APM megoldások 3 nagy ágra bonthatóak:
 
-1. Website or API monitoring – external services that constantly monitor uptime and performance via HTTP requests. Can be set up in few minutes. Following are few selected contenders: [Pingdom](https://www.pingdom.com/), [Uptime Robot](https://uptimerobot.com/), and [New Relic](https://newrelic.com/application-monitoring)
+1. Weboldal és API monitorozás - külső szolgáltatások, amelyek rendszeresen monitorozzák a rendszer elérhetőségét és válaszidejét HTTP kérésekkel. Akár pár perc alatt is beállítható egy ilyen rendszer. Pár szolgáltató: [Pingdom](https://www.pingdom.com/), [Uptime Robot](https://uptimerobot.com/) és [New Relic](https://newrelic.com/application-monitoring)
 
-2. Code instrumentation – product family which requires embedding an agent within the application to use features like slow code detection, exception statistics, performance monitoring and many more. Following are few selected contenders: New Relic, App Dynamics
+2. Code instrumentáció - az apm egy olyan ága, ami egy ágens beágyazását követeli meg és képes detektálni többek között a lassú végrehajtási útvonalakat, statisztikát vezetni a keletkező kivételekről és telejesítménymérésre. Pár szolgáltató: New Relic, App Dynamics.
 
-3. Operational intelligence dashboard – this line of products is focused on facilitating the ops team with metrics and curated content that helps to easily stay on top of application performance. This usually involves aggregating multiple sources of information (application logs, DB logs, servers log, etc) and upfront dashboard design work. Following are few selected contenders: [Datadog](https://www.datadoghq.com/), [Splunk](https://www.splunk.com/), [Zabbix](https://www.zabbix.com/)
+3. Üzleti intelligencia felület - ezek a termékek arra fókuszálnak, hogy az üzemeltető csapatot ellássák a megfelelő metrikákkal és válogatott tartalmakkal, melyek segítenek az alkalmazások teljesítményének könnyű áttekintésében. Ez általában magában foglalja különböző információk aggregálását (alkalmazás logok, adatbázis logok, szerver logok stb.) és felület előzetes beállítását. Pár szolgáltató: [Datadog](https://www.datadoghq.com/), [Splunk](https://www.splunk.com/), [Zabbix](https://www.zabbix.com/)
 
+ ### Példa UpTimeRobot.Com – Weboldal monitorozás
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/uptimerobot.jpg "Weboldal monitorozás")
 
-
- ### Example: UpTimeRobot.Com – Website monitoring dashboard
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/uptimerobot.jpg "Website monitoring dashboard")
-
- ### Example: AppDynamics.Com – end to end monitoring combined with code instrumentation
-![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/app-dynamics-dashboard.png "end to end monitoring combined with code instrumentation")
+ ### Példa: AppDynamics.Com – teljeskörű monitorozás instrumentációval kombinálva
+![alt text](https://github.com/i0natan/nodebestpractices/blob/master/assets/images/app-dynamics-dashboard.png "teljeskörű monitorozás instrumentációval kombinálva")
